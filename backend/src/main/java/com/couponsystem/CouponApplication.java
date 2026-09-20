@@ -1,5 +1,6 @@
-package com.example.coupon;
+package com.couponsystem;
 
+import com.couponsystem.coupon.Coupon;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
