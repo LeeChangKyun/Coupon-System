@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ProductService {
@@ -28,6 +31,11 @@ public class ProductService {
     // 카테고리별 상품 조회
     public Page<Product> findByCategory(String category, Pageable pageable) {
         return productRepository.findByCategory(category, pageable);
+    }
+
+    // 여러 상품을 쿼리 한 번으로 조회 (없는 ID는 결과에서 빠짐)
+    public List<Product> findAllByIds(Collection<Long> ids) {
+        return productRepository.findAllById(ids);
     }
 
 }
