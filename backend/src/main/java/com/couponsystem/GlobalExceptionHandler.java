@@ -1,5 +1,10 @@
-package com.couponsystem.coupon;
+package com.couponsystem;
 
+import com.couponsystem.cart.NotExistsCartItemException;
+import com.couponsystem.coupon.AlreadyIssuedException;
+import com.couponsystem.coupon.CouponSoldOutException;
+import com.couponsystem.coupon.NotExistCouponEventException;
+import com.couponsystem.product.NotExistsProductException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,4 +27,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> notExistCouponEvent(NotExistCouponEventException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
+
+    @ExceptionHandler(NotExistsProductException.class)
+    public ResponseEntity<String> notExistProduct(NotExistsProductException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(NotExistsCartItemException.class)
+    public ResponseEntity<String> notExistCartItem(NotExistsCartItemException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
 }
