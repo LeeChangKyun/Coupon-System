@@ -13,7 +13,7 @@ public class ProductService {
 
     // 전체 상품 조회
     public Page<Product> findAllProduct(String category, Pageable pageable) {
-        if (category == null) {
+        if (category == null || category.isBlank()) {
             return productRepository.findAll(pageable);
         }
         return findByCategory(category, pageable);
